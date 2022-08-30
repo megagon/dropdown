@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+.loader {
+  width: 50px;
+  position: absolute;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.autoComplete {
+  padding: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 1000px;
 }
 
-.App-link {
-  color: #61dafb;
+.dropDown {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.dropDown > span {
+    height: 20px
+}
+
+.input {
+  width: 100%;
+}
+
+@keyframes open {
+  from {max-height: 0}
+  to {max-height: calc(10 * 20px)}
+}
+
+@keyframes close {
+  from {max-height: calc(10 * 20px)}
+  to {max-height: 0}
+}
+
+.openDropdown {
+  animation-name: open;
+  animation-duration: 0.5s;
+  max-height: calc(10 * 20px);
+}
+
+.closeDropdown {
+  animation-name: close;
+  animation-duration: 0.5s;
+  max-height: 0;
+}
+
+@keyframes highlight {
+  0% {
+    width: 0;
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    width: 100%;
+    opacity: 1;
   }
+
+}
+
+.dropdownItem {
+  position: relative;
+}
+
+.dropdownItem:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place the pseudo element right under the content */
+  top: 0;
+  left: 0;
+  background: gold;
+  animation-name: highlight;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* Make the animation run back and forth */
 }
